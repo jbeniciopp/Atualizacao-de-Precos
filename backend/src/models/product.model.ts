@@ -11,9 +11,9 @@ export default class ProductModel implements Model<Product> {
   async create(obj: Product): Promise<void> {
     await this.connection.execute(
       `INSERT INTO ${DATABASE}.${this.tableName}(
-        name, cost_price, sales_price
-      ) VALUES (?, ?, ?);`,
-      [ obj.name, obj.costPrice, obj.salesPrice ]
+        code, name, cost_price, sales_price
+      ) VALUES (?, ?, ?, ?);`,
+      [ obj.code, obj.name, obj.costPrice, obj.salesPrice ]
     );
   }
 
