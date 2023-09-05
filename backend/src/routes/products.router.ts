@@ -11,7 +11,7 @@ router.get('/:code', (req: Request, res: Response) => productController.find(req
 
 router.post('/', (req: Request, res: Response) => productController.create(req, res));
 
-router.put('/:code', (req: Request, res: Response) => productController.create(req, res));
+router.put('/:code', (req: Request, res: Response) => productController.update(req, res));
 
 router.delete('/:code', (req: Request, res: Response) => productController.delete(req, res));
 

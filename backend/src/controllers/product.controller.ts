@@ -62,7 +62,7 @@ export default class ProductController {
       return res.status(404).json({ message: 'Not Found' })
     }
 
-    return res.status(204);
+    return res.status(204).end();
   }
 
   async delete(req: Request, res: Response) {
@@ -76,6 +76,6 @@ export default class ProductController {
       return res.status(404).json({ message: 'Not Found' })
     }
 
-    return res.status(204);
+    return res.status(204).end();
   }
 }
