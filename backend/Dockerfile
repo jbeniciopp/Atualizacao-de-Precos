@@ -5,3 +5,7 @@ WORKDIR /app-backend
 COPY package*.json ./
 
 RUN npm install
+
+ENTRYPOINT ["npm", "run"]
+
+CMD ["start"]

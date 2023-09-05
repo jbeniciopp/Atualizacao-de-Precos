@@ -17,7 +17,7 @@ services:
     build: ./backend
     tty: true
     stdin_open: true
-    command: sh
+    command: start
     restart: unless-stopped
     working_dir: /app-backend
     volumes:
