@@ -2,11 +2,13 @@ import { RowDataPacket } from 'mysql2';
 import conn from "./connection";
 import Model from "../interfaces/model.interface";
 import Product from "../interfaces/product.interface";
-const DATABASE = 'Atualizacao_de_Precos'
+const DATABASE = 'Atualizacao_de_Precos';
 
 export default class ProductModel implements Model<Product> {
-  constructor(private tableName: string = 'products', 
-  private connection = conn) { }
+  constructor(
+    private tableName: string = 'products', 
+    private connection = conn
+  ) { }
   
   async create(obj: Product): Promise<void> {
     await this.connection.execute(
@@ -19,7 +21,11 @@ export default class ProductModel implements Model<Product> {
 
   async list(): Promise<Partial<Product>[]> {
     const result = await this.connection.execute(
-      `SELECT *
+      `SELECT
+      ${DATABASE}.${this.tableName}.code,
+      ${DATABASE}.${this.tableName}.name,
+      ${DATABASE}.${this.tableName}.cost_price AS costPrice,
+      ${DATABASE}.${this.tableName}.sales_price AS salesPrice
       FROM ${DATABASE}.${this.tableName};`
     );
     const [ products ] = result;
@@ -28,7 +34,11 @@ export default class ProductModel implements Model<Product> {
 
   async find(id: number): Promise<Partial<Product> | null> {
     const result = await this.connection.execute(
-      `SELECT *
+      `SELECT
+      ${DATABASE}.${this.tableName}.code,
+      ${DATABASE}.${this.tableName}.name,
+      ${DATABASE}.${this.tableName}.cost_price AS costPrice,
+      ${DATABASE}.${this.tableName}.sales_price AS salesPrice
       FROM ${DATABASE}.${this.tableName} WHERE code = ?;`, [ id ]
     );
     const [ products ] = result as RowDataPacket[];

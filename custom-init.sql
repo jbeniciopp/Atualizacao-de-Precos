@@ -9,7 +9,7 @@ CREATE TABLE products
 	name varchar(100) NOT NULL, # NOME DO PRODUTO
 	cost_price decimal(9,2) NOT NULL, # CUSTO DO PRODUTO
 	sales_price decimal(9,2) NOT NULL # PRE�O DE VENDA DO PRODUTO
-);
+) ENGINE=INNODB;
 
 INSERT INTO products VALUES (16,'AZEITE  PORTUGUÊS  EXTRA VIRGEM GALLO 500ML',18.44,20.49);
 INSERT INTO products VALUES (18,'BEBIDA ENERGÉTICA VIBE 2L',8.09,8.99);
@@ -32,7 +32,7 @@ CREATE TABLE packs
   qty bigint NOT NULL, # quantidade do produto componente no pack
   CONSTRAINT FOREIGN KEY (pack_id) REFERENCES products(code),
   CONSTRAINT FOREIGN KEY (product_id) REFERENCES products(code)
-);
+) ENGINE=INNODB;
 
 INSERT INTO packs (pack_id,product_id, qty) VALUES (1000,18,6);
 INSERT INTO packs (pack_id,product_id, qty) VALUES (1010,24,1);
