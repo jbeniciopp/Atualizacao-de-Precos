@@ -1,0 +1,48 @@
+version: '3.9'
+services:
+  frontend:
+    container_name: app_frontend
+    build: ./frontend
+    ports:
+      - 3000:3000
+    working_dir: /app-frontend
+    # Os `healthcheck` devem garantir que a aplicação
+    # está operacional, antes de liberar o container
+    healthcheck:
+      test: ["CMD", "lsof", "-t", "-i:3000"]  # Caso utilize outra porta interna para o front, altere ela aqui também
+      timeout: 10s
+      retries: 5
+  backend:
+    container_name: app_backend
+    build: ./backend
+    tty: true
+    stdin_open: true
+    command: sh
+    restart: unless-stopped
+    working_dir: /app-backend
+    volumes:
+      - ./backend:/app-backend
+    ports:
+      - 3001:3001
+    env_file: .env
+    environment:
+      MYSQLHOST: db
+  db:
+    image: mysql:8.0.32
+    container_name: db
+    env_file: .env
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQLPASSWORD}
+      - MYSQL_CHARSET=utf8mb4
+      - MYSQL_COLLATION=utf8mb4_unicode_ci
+    restart: 'always'
+    healthcheck:
+      test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"] # Deve aguardar o banco ficar operacional
+      timeout: 10s
+      retries: 5
+    cap_add:
+      - SYS_NICE # Deve omitir alertas menores
+    volumes:
+      - ./custom-init.sql:/docker-entrypoint-initdb.d/custom-init.sql
