@@ -48,9 +48,9 @@ export default class ProductModel implements Model<Product> {
   async update(id: number, obj: Product): Promise<void> {
     await this.connection.execute(
       `UPDATE ${DATABASE}.${this.tableName}
-      SET name = ?, cost_price = ?, sales_price = ?
+      SET code = ?, name = ?, cost_price = ?, sales_price = ?
       WHERE code = ?;`,
-      [ obj.name, obj.costPrice, obj.salesPrice, id ]
+      [ obj.code, obj.name, obj.costPrice, obj.salesPrice, id ]
     );
   }
 

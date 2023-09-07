@@ -3,15 +3,15 @@ services:
   frontend:
     container_name: app_frontend
     build: ./frontend
-    ports:
-      - 3000:3000
+    tty: true
+    stdin_open: true
+    command: dev
+    restart: unless-stopped
     working_dir: /app-frontend
-    # Os `healthcheck` devem garantir que a aplicação
-    # está operacional, antes de liberar o container
-    healthcheck:
-      test: ["CMD", "lsof", "-t", "-i:3000"]  # Caso utilize outra porta interna para o front, altere ela aqui também
-      timeout: 10s
-      retries: 5
+    volumes:
+      - ./frontend:/app-frontend
+    ports:
+      - 5173:5173
   backend:
     container_name: app_backend
     build: ./backend

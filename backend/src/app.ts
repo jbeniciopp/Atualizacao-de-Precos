@@ -1,8 +1,11 @@
 import express from 'express';
 import productRouter from './routes/products.router';
 import packRouter from './routes/pack.router';
+var cors = require('cors')
 
 const app = express();
+
+app.use(cors());
 
 app.use(express.json());
 

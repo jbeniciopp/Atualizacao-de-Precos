@@ -1,0 +1,78 @@
+.product {
+  display: flex;
+  background-color: #0EAB78;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: space-around;
+  margin: 10px;
+  height: 70px;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.product .outer {
+  width: 300px;
+}
+
+.product .name {
+  width: 600px;
+}
+
+.erro {
+  color: red;
+  width: 300px;
+}
+
+nav {
+  display: flex;
+  /* flex-direction: column; */
+  /* width: 15%; */
+  /* height: 100px; */
+  margin-left: 40px;
+}
+
+button {
+  border: 0;
+  background-color: #0EAB78;
+  color: #1C1A35;
+  height: 30px;
+  width: 250px;
+  border-radius: 50px;
+  font-size: medium;
+  margin: 0 10px;
+}
+
+button:hover {
+  background-color: #1C1A35;
+  color: #0EAB78;
+}
+
+button:disabled {
+  display: none;
+}
+
+input[type="file"] {
+  display: none; /* Ocultar o input padrão */
+}
+
+.custom-file-upload {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0EAB78;
+  color: #1C1A35;
+  height: 30px;
+  width: 250px;
+  border-radius: 50px;
+  font-size: medium;
+  margin: 0 10px;
+}
+
+.custom-file-upload:hover {
+  background-color: #1C1A35;
+  color: #0EAB78;
+}
+
+.waiting {
+  text-align: center;
+}

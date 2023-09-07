@@ -53,8 +53,8 @@ class ProductModel {
     update(id, obj) {
         return __awaiter(this, void 0, void 0, function* () {
             yield this.connection.execute(`UPDATE ${DATABASE}.${this.tableName}
-      SET name = ?, cost_price = ?, sales_price = ?
-      WHERE code = ?;`, [obj.name, obj.costPrice, obj.salesPrice, id]);
+      SET code = ?, name = ?, cost_price = ?, sales_price = ?
+      WHERE code = ?;`, [obj.code, obj.name, obj.costPrice, obj.salesPrice, id]);
         });
     }
     delete(id) {
