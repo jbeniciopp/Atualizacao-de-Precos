@@ -26,26 +26,20 @@ const validation = async (newPrices, packs) => {
   });
 
   function calculateNewPrice(product, products) {
-    // Verificar se o produto tem dependências
     if (product.dependency && product.dependency.length > 0) {
-      let newPrice = 0; // Converter para número
-  
-      // Iterar pelas dependências do produto
+      let newPrice = 0;
+
       for (const dependency of product.dependency) {
-        // Encontrar o produto dependente pelo productId
         const dependentProduct = products.find((p) => p.code === dependency.productId);
   
         if (dependentProduct) {
-          // Calcular o custo total das dependências
           const totalCost = dependentProduct.newPrice * dependency.qty;
-  
-          // Adicionar o custo total ao novo preço
+
           newPrice += totalCost;
         }
       }
-  
-      // Atualizar o newPrice do produto
-      product.newPrice = Number(newPrice.toFixed(2)); // Arredonde para 2 casas decimais
+
+      product.newPrice = Number(newPrice.toFixed(2));
     }
   }
 

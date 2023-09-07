@@ -106,7 +106,6 @@ function Home() {
         </button>
         <button
           disabled={ disabledUpdateButton }
-          // disabled={ validationResult.some(item => item.erroEnabled) }
           onClick={ () => {
             console.log(validationResult);
             productsList.forEach((e) => {
